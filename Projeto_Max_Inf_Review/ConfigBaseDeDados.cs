@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,7 +13,8 @@ namespace Projeto_Max_Inf_Review
 {
     class ConfigBaseDeDados
     {
-        private readonly FormDbConfig formDb;
+        private readonly FormDbConfig formDbconfig;
+        private static ConfigBaseDeDados config;
 
         public string InstanciaSQL;
         public string NomeBD;
@@ -22,10 +23,10 @@ namespace Projeto_Max_Inf_Review
         private SqlConnection sqlConnection;
 
         
-        private static ConfigBaseDeDados config;
+
 
         
-        public static ConfigBaseDeDados Config()
+        public static ConfigBaseDeDados Config
         {
             get
             { 
@@ -40,10 +41,10 @@ namespace Projeto_Max_Inf_Review
 
         private ConfigBaseDeDados()
         {
-            formDb = new FormDbConfig();
+            formDbconfig = new FormDbConfig();
         }
-        
-         public void TestConexao()
+
+        public void TestConexao()
         {
             try
             {
@@ -55,13 +56,16 @@ namespace Projeto_Max_Inf_Review
             }
             catch (Exception e)
             {
-                MessageBox.Show("ERRO no carregamento do Banco de Dados!" + e.Message);
-
-                
+                System.Windows.Forms.MessageBox.Show("ERRO no carregamento do Banco de Dados!" + e.Message);
+ 
                 
             }
         }
         
-
-    }
-}
+        internal void Configurar()
+        {
+            if(formDbconfig.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                TestConexao();
+            }
+        }

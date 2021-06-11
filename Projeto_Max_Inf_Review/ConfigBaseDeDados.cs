@@ -14,7 +14,7 @@ namespace Projeto_Max_Inf_Review
     class ConfigBaseDeDados
     {
         private readonly FormDbConfig formDbconfig;
-        private static ConfigBaseDeDados ;
+        private static ConfigBaseDeDados configDeVolta ;
 
         public string InstanciaSQL;
         public string NomeBD;

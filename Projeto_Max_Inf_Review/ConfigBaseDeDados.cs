@@ -43,6 +43,25 @@ namespace Projeto_Max_Inf_Review
             formDb = new FormDbConfig();
         }
         
+         public void TestConexao()
+        {
+            try
+            {
+                LoadConfig();
+                var conexao = GetConnectionString();
+                sqlConnection = new SqlConnection(conexao);
+                sqlConnection.Open();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("ERRO no carregamento do Banco de Dados!" + e.Message);
+
+                
+                
+            }
+        }
+        
 
     }
 }
